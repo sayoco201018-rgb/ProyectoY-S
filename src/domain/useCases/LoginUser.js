@@ -9,9 +9,9 @@
 
 export class LoginUser {
 
-    constructor(userRepository) {
+    constructor(userRepository, passwordHasher) {
         this.userRepository = userRepository;
-        //this.passwordHasher = passwordHasher;
+        this.passwordHasher = passwordHasher;
     }
 
     async execute(credentials) {
@@ -21,30 +21,28 @@ export class LoginUser {
                 credentials.email
             );
 
-     if (!user || user.password !== credentials.password) {
-        throw new Error(
-            "Correo o contraseña incorrectos."
-        );
-    }
-/*
+     
+
         if (!user) {
             throw new Error(
                 "Correo o contraseña incorrectos."
             );
         }
 
-        const isValid =
+        const storedHash = user.passwordHash ?? user.password;
+
+            const isValid =
             await this.passwordHasher.verify(
-                credentials.password,
-                user.passwordHash
-            );
+            credentials.password,
+            storedHash
+        );
 
         if (!isValid) {
             throw new Error(
                 "Correo o contraseña incorrectos."
             );
         }
-*/
+
         return user;
     }
 }

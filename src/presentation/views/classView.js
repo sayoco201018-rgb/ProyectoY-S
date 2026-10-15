@@ -14,7 +14,8 @@ let currentPresenter = null;
 
 export function showClassView(
     container,
-    presenter
+    presenter,
+    user
 ) {
 console.log("Presenter al mostrar la vista:", presenter);
     currentPresenter = presenter;
@@ -26,6 +27,7 @@ console.log("Presenter al mostrar la vista:", presenter);
                 <div>
                     <h1>Gestor Escolar</h1>
                     <p>Gestión de clases</p>
+                    ${user ? `<p>Tipo de usuario: <strong>${escapeHtml(user.tipoUsuario)}</strong></p>` : ""}
                 </div>
             </header>
 
@@ -409,4 +411,4 @@ function escapeHtml(value) {
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
-}
+} 

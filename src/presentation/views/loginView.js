@@ -126,7 +126,7 @@ export function showLoginView(container, presenter) {
 
         //await presenter.login(credentials);
         presenter.login(credentials);
-        debugger;
+
     });
 
 

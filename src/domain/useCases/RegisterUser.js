@@ -1,37 +1,3 @@
-/*
- * Register User Use Case
- *
- * Contiene las reglas necesarias para
- * registrar un nuevo usuario.
- */
-
-import { User } from "../entities/User.js";
-
-export class RegisterUser {
-
-    constructor(userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    async execute(user) {
-
-        const existingUser =
-            await this.userRepository.findByEmail(user.email);
-
-        if (existingUser) {
-            throw new Error(
-                "Ya existe un usuario con este correo."
-            );
-        }
-
-        return await this.userRepository.save(user);
-    }
-
-}
-    /*
-
-
-
 import { User } from "../entities/User.js";
 
 export class RegisterUser {
@@ -41,7 +7,11 @@ export class RegisterUser {
         this.passwordHasher = passwordHasher;
     }
 
-    async execute(userData) {
+    async execute(userData) { 
+
+        if (!["estudiante", "profesor"].includes(userData.tipoUsuario)) {
+        throw new Error("Selecciona un tipo de usuario.");
+        }
 
         const existingUser =
             await this.userRepository.findByEmail(
@@ -62,10 +32,10 @@ export class RegisterUser {
         const user = new User({
             name: userData.name,
             email: userData.email,
-            passwordHash: passwordData
+            passwordHash: passwordData,
+            tipoUsuario: userData.tipoUsuario
         });
 
         return await this.userRepository.save(user);
     }
 }
-    */

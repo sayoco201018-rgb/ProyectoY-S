@@ -35,7 +35,8 @@ export class LoginPresenter {
 
             showClassView(
                 this.container,
-                this.classPresenter
+                this.classPresenter,
+                user
             );
 
         } catch (error) {
