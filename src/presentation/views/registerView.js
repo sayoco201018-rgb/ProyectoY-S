@@ -109,6 +109,30 @@ export function showRegisterView(container, presenter) {
                 ></p>
 
             </div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Nombre:</strong> <span id="confirmName"></span></p>
+        <p><strong>Correo Electronico:</strong> <span id="confirmEmail"></span></p>
+        <p><strong>Contraseña:</strong> <span id="confirmPassword"></span></p>
+        <p><strong>Tipo de usuario:</strong> <span id="confirmType"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btnConfirmar">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+            
         </section>
     `;
 
@@ -118,7 +142,10 @@ export function showRegisterView(container, presenter) {
     registerForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
+    
         const formData = new FormData(registerForm);
+        const modalElemento = document.getElementById("staticBackdrop")
+        const modal = new bootstrap.Modal(modalElemento)
 
         const userData = {
             name: formData.get("name"),
@@ -126,10 +153,24 @@ export function showRegisterView(container, presenter) {
             password: formData.get("password"),
             tipoUsuario: formData.get("tipoUsuario")
         };
+        document.getElementById("confirmName").textContent = userData.name;
+        document.getElementById("confirmEmail").textContent = userData.email;
+        document.getElementById("confirmPassword").textContent = "*******";
+        document.getElementById("confirmType").textContent = userData.tipoUsuario;
 
-        presenter.register(userData);
+        registerForm.dataset.userData = JSON.stringify(userData);
+
+        modal.show();
+        //presenter.register(userData);
     });
+    document.getElementById("btnConfirmar").addEventListener("click", () => {
+    const userData = JSON.parse(registerForm.dataset.userData);
 
+    presenter.register(userData);
+    const modalid = document.getElementById("staticBackdrop");
+    const modal = bootstrap.Modal.getOrCreateInstance(modalid);
+    modal.hide();
+});
     const loginButton =
         document.getElementById("show-login");
 
