@@ -31,7 +31,8 @@ export class RegisterPresenter {
         } catch (error) {
 
             showRegisterMessage(
-                error.message
+                error.message,
+                "danger"
             );
         }
     }

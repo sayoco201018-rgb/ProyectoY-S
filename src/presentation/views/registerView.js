@@ -127,7 +127,7 @@ export function showRegisterView(container, presenter) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btnConfirmar">Confirmar</button>
+        <button type="button" id="btnConfirmar" class="btn btn-primary btnConfirmar">Confirmar</button>
       </div>
     </div>
   </div>
@@ -179,11 +179,15 @@ export function showRegisterView(container, presenter) {
     });
 }
 
-export function showRegisterMessage(message) {
+export function showRegisterMessage(message, type="success") {
     const messageElement =
         document.getElementById("register-message");
-
+ 
     if (messageElement) {
-        messageElement.textContent = message;
+        messageElement.innerHTML = `
+        <div class="alert alert-${type}" role="alert">
+        ${message}
+        </div>
+        `;
     }
 }

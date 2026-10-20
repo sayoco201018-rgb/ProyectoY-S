@@ -31,7 +31,12 @@ export class LoginPresenter {
                 await this.loginUser.execute(
                     credentials
                 );
+
             console.log("Usuario autenticado:",user);
+            //a continuación creamos objetos que identifica el usuario que inició sesión
+            localStorage.setItem("usuarioActivo", JSON.stringify(user));
+            console.log("Usuario autenticado:", user);
+
 
             showClassView(
                 this.container,
