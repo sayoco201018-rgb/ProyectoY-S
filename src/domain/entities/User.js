@@ -13,11 +13,12 @@
  */
 
 export class User {
-    constructor({ id, name, email, passwordHash, tipoUsuario }) {
+    constructor({ id, name, email, passwordHash, Identificación, tipoUsuario }) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.passwordHash = passwordHash; 
+        this.passwordHash = passwordHash;
+        this.Identificación = Identificación;
         this.tipoUsuario = tipoUsuario; 
     }
 }

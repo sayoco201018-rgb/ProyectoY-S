@@ -33,6 +33,7 @@ export class RegisterUser {
             name: userData.name,
             email: userData.email,
             passwordHash: passwordData,
+            Identificación: userData.Identificación,
             tipoUsuario: userData.tipoUsuario
         });
 

@@ -10,6 +10,8 @@
  * NO contiene lógica de negocio.
  */
 
+import { consultaNota } from "../../domain/Servicios/notasEstudiantes.js"
+
 import { validarUsuarioLogeado } from "../../domain/Servicios/Servicio.js"
 let currentPresenter = null;
 
@@ -285,6 +287,15 @@ export function renderClasses(
                     </button>
 
                 </div>
+                
+                </div>
+                    <label for="Identificación">Consulta tu nota de Seguridad en Apps Móviles</label>
+                <button type="button" id="btn-consultar" class="btn btn-primary">
+                    Consultar nota
+                </button>
+                </div>
+
+                <div id="resultado"></div>
 
             </article>
 
@@ -292,7 +303,7 @@ export function renderClasses(
     ).join("");
     console.log("classView");
     validarUsuarioLogeado();
-
+    consultaNota();
     /*
      * Eventos de Editar
      */

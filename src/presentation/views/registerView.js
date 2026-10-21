@@ -63,6 +63,20 @@ export function showRegisterView(container, presenter) {
                         >
                     </div>
 
+                     <div class="form-group">
+                        <label for="register-identificación">
+                            Identificación
+                        </label>
+
+                        <input
+                            type="Identificación"
+                            id="register-Identificación"
+                            name="Identificación"
+                            placeholder="Digite su identificación"
+                            required
+                        >
+                    </div>
+
                          <div class="form-group">
                         <label for="register-usuario">
                             Tipo de usuario
@@ -123,6 +137,7 @@ export function showRegisterView(container, presenter) {
         <p><strong>Nombre:</strong> <span id="confirmName"></span></p>
         <p><strong>Correo Electronico:</strong> <span id="confirmEmail"></span></p>
         <p><strong>Contraseña:</strong> <span id="confirmPassword"></span></p>
+        <p><strong>Identificación:</strong> <span id="confirmIdentificación"></span></p>
         <p><strong>Tipo de usuario:</strong> <span id="confirmType"></span></p>
       </div>
       <div class="modal-footer">
@@ -151,12 +166,15 @@ export function showRegisterView(container, presenter) {
             name: formData.get("name"),
             email: formData.get("email"),
             password: formData.get("password"),
+            Identificación: formData.get("Identificación"),
             tipoUsuario: formData.get("tipoUsuario")
         };
         document.getElementById("confirmName").textContent = userData.name;
         document.getElementById("confirmEmail").textContent = userData.email;
         document.getElementById("confirmPassword").textContent = "*******";
+        document.getElementById("confirmIdentificación").textContent = userData.Identificación;
         document.getElementById("confirmType").textContent = userData.tipoUsuario;
+
 
         registerForm.dataset.userData = JSON.stringify(userData);
 
